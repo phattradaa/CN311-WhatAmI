@@ -1,0 +1,378 @@
+0,Aardvark
+1,African Elephant
+2,African Tree Pangolin
+3,Albatross
+4,Alligator
+5,Alpaca
+6,Anaconda
+7,Angel Fish
+8,Ant
+9,Anteater
+10,Antelope
+11,Archer Fish
+12,Armadillo
+13,Asian Elephant
+14,Atlantic Puffin
+15,Aye-Aye
+16,Arab horse
+17,Baboon
+18,Badger
+19,Bald Eagle
+20,Bandicoot
+21,Bangle Tiger
+22,Barnacle
+23,Barracuda
+24,Basilisk
+25,Bass
+26,Basset Hound
+27,Bat
+28,Bearded Dragon
+29,Beaver
+30,Bee
+31,Beetle
+32,Beluga Whale
+33,Bird
+34,Big-horned sheep
+35,Bird of paradise
+36,Bison
+37,Billy goat
+38,Black Bear
+39,Black Fly
+40,Black Rhino
+41,Black Footed Rhino
+42,Black Widow Spider
+43,Blackbird
+44,Blowfish
+45,Blue Jay
+46,Blue Whale
+47,Boa
+48,Boar
+49,Bob-Cat
+50,Bonobo
+51,Bottle-Nose dolphin
+52,Bornean Orang-utan
+53,Boxer dog
+54,Brown Bear
+55,Buck
+56,Budgie
+57,Buffalo
+58,Bull
+59,Bull frog
+60,Bull Mastiff
+61,Butterfly
+62,Buzzard
+63,Border Collie
+64,Caribou
+65,Cheetah
+66,Common Dolphin
+67,Common seal
+68,Caiman lizard
+69,Camel
+70,Canary
+71,Carp
+72,Cat
+73,Caterpillar
+74,Cattle
+75,Catfish
+76,Chameleon
+77,Centipede
+78,Chicken
+79,Chimpanzee
+80,Chihuahua
+81,Chinchilla
+82,Chipmunk
+83,Clam
+84,Chupacabra
+85,Clown Fish
+86,Cobra
+87,Cocker Spaniel
+88,Cockatiel
+89,Cockatoo
+90,Cockroach
+91,Cod
+92,Coho
+93,Corn Snake
+94,Cougar
+95,Cow
+96,Coyote
+97,Crab
+98,Crane
+99,Crawfish
+100,Cray fish
+101,Cricket
+102,Crocodile
+103,Crow
+104,Cuckoo bird
+105,Cuttle fish
+106,Deer
+107,Dog
+108,Du-gong
+109,Dalmation
+110,Dacshund
+111,Damsel fly
+112,Dart Frog
+113,Devi Fish
+114,Diamond back rattler
+115,Dik-dik
+116,Dingo
+117,Dinosaur
+118,Doberman Pinscher
+119,Dodo bird
+120,Dolphin
+121,Dolly Varden
+122,Donkey
+123,Door mouse
+124,Dormouse
+125,Draft horse
+126,Dove
+127,Dragonfly
+128,Drake
+129,Duck
+130,Duckbill Platypus
+131,Dung beetle
+132,Eurasian Lynx
+133,Eagle
+134,Earthworm
+135,Earwig
+136,Echidna
+137,Eclectus
+138,Eel
+139,Egret
+140,Elephant
+141,Elephant Seal
+142,Elk
+143,Emu
+144,Erne
+145,Falcon
+146,Finch
+147,Fish
+148,Firefly
+149,Flamingo
+150,Flatworm
+151,Fly
+152,Ferret
+153,Fox
+154,Fresh Water Crocodile
+155,Frog
+156,Galapagos Land Iguana
+157,Galapagos Tortoise
+158,Gazelle
+159,Giant Anteater
+160,Giant panda
+161,Giraffe
+162,Gnat
+163,Goat
+164,Goose
+165,Gopher
+166,Gorilla
+167,Grasshopper
+168,Green fly
+169,Grey Whale
+170,Great White Shark
+171,Green poison dart frog
+172,Green Sea Turtle
+173,Groundhog
+174,Hammerhead shark
+175,Hare
+176,Hawk
+177,Hedgehog
+178,Heron
+179,Herring
+180,Hippopotamus
+181,Horse
+182,Hyena
+183,Hyrax
+184,Irrawaddy Dolphin
+185,Iguana
+186,Iguanodon
+187,Impala
+188,Inchworm
+189,Insect
+190,Jellyfish
+191,Jackal
+192,Jackrabbit
+193,Jaguar
+194,June bug
+195,Kangaroo
+196,Killer Whale
+197,King Cobra
+198,Kingfisher
+199,Koala
+200,Komodo Dragon
+201,Kookaburra
+202,Krill
+203,Lama
+204,Lamb
+205,Lancelet
+206,Leatherback sea turtle
+207,Leech
+208,Lemming
+209,Lemur
+210,Leopard
+211,Lice
+212,Lion
+213,Lionfish
+214,Llama
+215,Lobster
+216,Lynx
+217,Manatee
+218,Man-Of-War
+219,Mantis
+220,Marmot
+221,Marsupials
+222,Meerkat
+223,Mink
+224,Mole
+225,Mollusks
+226,Monarch Butterfly
+227,Mongoose
+228,Monkey
+229,Moose
+230,Mountain Lion
+231,Mouse
+232,Mule
+233,Muskox
+234,Muskrat
+235,Naked Mole Rat
+236,Narwhal
+237,Nautilus
+238,Newt
+239,Ocelot
+240,Octopus
+241,Opossum
+242,Orangutan
+243,Orca
+244,Osprey
+245,Ostrich
+246,Otter
+247,Owl
+248,Ox
+249,Panda
+250,Panther
+251,Peacock
+252,Pelican
+253,Penguin
+254,Pig
+255,Pigeon
+256,Platypus
+257,Polar Bear
+258,Porcupine
+259,Praying Mantis
+260,Prawn
+261,Puma
+262,Quail
+263,Quetzal
+264,Rabbit
+265,Raccoon
+266,Rat
+267,Ray
+268,Reindeer
+269,Rhino
+270,Ringworm
+271,Rhinoceros
+272,Robin
+273,Rooster
+274,Roundworm
+275,Salmon
+276,Salt water alligator
+277,Sandpiper
+278,Seahorse
+279,Seal
+280,Sea anemone
+281,Sea Lion
+282,Sea urchin
+283,Scallop
+284,Scorpion
+285,Shark
+286,Sheep
+287,Shrimp
+288,Siberian Husky
+289,Siberian Tiger
+290,Skunks
+291,Slender Loris
+292,Sloth
+293,Sloth bear
+294,Slugs
+295,Snails
+296,Snake
+297,Snow Hare
+298,Snow Fox
+299,Snow Leopard
+300,Somali Wild Ass
+301,Sponge
+302,Spectacled Bear
+303,Squid
+304,Squirrel
+305,Starfish
+306,Stork
+307,Swan
+308,Swordfish
+309,Tapir
+310,Tasmanian Devil
+311,Tiger
+312,Tadpole
+313,Tamarin
+314,Tapeworm
+315,Tarantula
+316,Tarpan
+317,Tazmanian devil
+318,Tazmanian tiger
+319,Terrapin
+320,Tick
+321,Tiger shark
+322,Tortoise
+323,Trout
+324,Turkey
+325,Turtle
+326,Uakari
+327,Umbrella bird
+328,Urchin
+329,Urutu
+330,Vicuna
+331,Viper
+332,Vulture
+333,Vampire bat
+334,Velociraptor
+335,Vole
+336,Viper Fish
+337,Velvet worm
+338,Vervet
+339,Walrus
+340,Warbler
+341,Warthog
+342,Wasp
+343,Water Buffalo
+344,Water Dragons
+345,Wallaby
+346,Whale
+347,Whale Shark
+348,White Rhino
+349,Whippet
+350,White tailed dear
+351,Whooper
+352,Whooping Crane
+353,Weasel
+354,Weevil
+355,Wolf
+356,Wolf Spider
+357,Wolverine
+358,Woodchuck
+359,Woodpecker
+360,Widow Spider
+361,Wren
+362,Wombat
+363,Wildcat
+364,Wildebeest
+365,X-ray fish
+366,Yak
+367,Yellow Bellied Marmot
+368,Yellow belly sapsucker
+369,Yellow finned tuna
+370,Yeti
+371,Yorkshire terrier
+372,Zander
+373,Zebra
+374,Zebra Finch
+375,Zebra Dove
+376,Zorilla
+377,Zebu
