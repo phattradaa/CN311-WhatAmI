@@ -20,7 +20,7 @@ public class Server extends Thread {
                 ServerSocket server2 = new ServerSocket(port2);
                 while (true) {
                     Socket player2 = server2.accept();
-
+                    ฆะพรืก ะ
 
                     gameRun = true;
                     while (gameRun) {
