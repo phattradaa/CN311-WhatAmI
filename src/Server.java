@@ -1,3 +1,4 @@
+package src;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -50,16 +51,16 @@ public class Server extends Thread {
 
         ArrayList<String> list = new ArrayList<String>();
         try { 
-                CSVReader reader = new CSVReader(new FileReader(path));
+                FileReader reader = new FileReader(path);
                 File file = new File(path);
-                BufferedReader data = new BufferedReader(new FileReader(file));
+                BufferedReader data = new BufferedReader(reader);
                 String line;
                 while ((line = data.readLine()) != null) {
                     String[] arr = line.split(",");
                     list.add(arr[1]);
                 }
                 return list;
-            } catch (Exception error) {
+            } catch (Exception error) {2
                 System.out.println("Error from Set Datasets");
                 return null;
             }
