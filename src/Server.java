@@ -72,22 +72,24 @@ public class Server extends Thread {
     }
 
     //Check Datasets//
-    public boolean checkAnswer(String input, ArrayList<String> answerList, ArrayList<String> datasets) {
+    public String checkAnswer(String input, ArrayList<String> answerList, ArrayList<String> datasets) {
+        String  status = "true";
         for (String currentAnswer : answerList) {
             if (input.equals(currentAnswer)) {
-                return false;
+                status = "false";
             } else { 
-                return true;
+                status = "true";
             }
         }
 
         for (String currentData : datasets) {
             if (input.equals(currentData)) {
-                return true;
+                status = "true";
             } else {
-                return false;
+                status = "false";
             }
         }
+        return status;
     }
     
 

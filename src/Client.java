@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Client {
     public static void main(String[] args) throws IOException {
         String[] rooms = { "room1", "room2", "room3", "room4" }; // select room
-        Thread[] threads = new Thread[4]; // create thread for the room
+        //Thread[] threads = new Thread[4]; // create thread for the room
         // ConcurrentHashMap<String, Socket> connectedRooms = new ConcurrentHashMap<>();
         // // save information about selected room and users who joined the room
 
