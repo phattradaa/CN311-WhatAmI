@@ -1,124 +1,148 @@
 package src;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Server extends Thread {
+    boolean clientConnect = false;
     //Setting Server//
-    public void Server(int port1, int port2) throws IOException {
+    public void Server(int port,Thread thread) throws IOException {
         boolean gameRun = false;
-        ArrayList<String> answerList = new ArrayList<String>();
         try {
-            ServerSocket server1 = new ServerSocket(port1);
+            ServerSocket server = new ServerSocket(port);
             while (true) {
-                Socket player1 = server1.accept();
-                ServerSocket server2 = new ServerSocket(port2);
-                while (true) {
-                    Socket player2 = server2.accept();
+                Socket player = server.accept();
 
+                if (!clientConnect) {
+                    System.out.println("Connect Succesful");
 
+                    InputStream input = player.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
+
+                    OutputStream output = player.getOutputStream();
+
+                    PrintWriter PrintWrite = new PrintWriter(output, true);
+                    
+                    PrintWrite.println(clientConnect);
+
+                    clientConnect = true;
                     gameRun = true;
+
                     while (gameRun) {
-                        
+                        String path = path(thread);
+                        String randomFilePath = random(path);
+                        System.out.println("The picture is : " + randomFilePath);
                     }
-
-
                 }
+
             }
         } catch (Exception error) {
             System.out.println("error");
         }
+    }
 }
 
-    //Set Datasets//
-    public ArrayList dataSets(Thread thread) {
+    //Set Path of Data//
+    public String path(Thread thread) {
         String path = "...";
         if (Thread.currentThread().getName().equals("fruits")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/fruits.csv";
+            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/fruits";
         } else if (Thread.currentThread().getName().equals("vegetable")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/vegetables.csv";
+            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/vegetables";
         } else if (Thread.currentThread().getName().equals("animals")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/animals.csv";
+            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/animals";
         } else if (Thread.currentThread().getName().equals("countries")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/all_countries.csv";
-        } 
-
-        ArrayList<String> list = new ArrayList<String>();
-        try { 
-                FileReader reader = new FileReader(path);
-                File file = new File(path);
-                BufferedReader data = new BufferedReader(reader);
-                String line;
-                while ((line = data.readLine()) != null) {
-                    String[] arr = line.split(",");
-                    list.add(arr[1]);
-                }
-                return list;
-            } catch (Exception error) {
-                System.out.println("Error from Set Datasets");
-                return null;
-            }
+            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/countries";
+        }
+        return path;
     }
 
-    //Save Answer//
-    public void saveAnswer(String input, ArrayList<String> answerList) {
-        answerList.add(input);
-    }
+    //Random Picture in Path
+    public String random(String path) {
+        File folder = new File(path);
 
-    //Check Datasets//
-    public String checkAnswer(String input, ArrayList<String> answerList, ArrayList<String> datasets) {
-        String  status = "true";
-        for (String currentAnswer : answerList) {
-            if (input.equals(currentAnswer)) {
-                status = "false";
-            } else { 
-                status = "true";
-            }
+        // Check if the path is a directory
+        if (!folder.isDirectory()) {
+            System.out.println("Invalid folder path.");
+            return null;
         }
 
-        for (String currentData : datasets) {
-            if (input.equals(currentData)) {
-                status = "true";
-            } else {
-                status = "false";
-            }
+        File[] files = folder.listFiles();
+
+        // Check if the folder is empty
+        if (files == null || files.length == 0) {
+            System.out.println("Folder is empty.");
+            return null;
         }
-        return status;
+
+        Random random = new Random();
+        File randomFile = files[random.nextInt(files.length)];
+
+        // Get the absolute path of the randomly selected file
+        String randomFilePath = randomFile.getAbsolutePath();
+
+        // Use the randomly selected file for further processing
+        return randomFilePath;
     }
     
 
+    //Check Answer//
+    public boolean checkAnswer(String input, File randomPicture) {
+        boolean tmp = false;
+        String randomPictureName = randomPicture.getName();
+
+        if (input.equals(randomPictureName)) {
+            tmp = true;
+        } else {
+            tmp = false;
+        }
+        return tmp;
+    }
+
+    public String name(File randomPicture) {
+        String name = randomPicture.getName();
+        for (String i : name) {
+            
+        }
+    }
+    
     public void run() {
         System.out.println("Room " + Thread.currentThread().getName() + "start");
         if (Thread.currentThread().getName().equals("fruits")) {
             try {
-                Server(1111, 1112);
+                Server(1111,Thread.currentThread());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if (Thread.currentThread().getName().equals("vegetable")) {
             try {
-                Server(2221, 2222);
+                Server(2222, Thread.currentThread());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if (Thread.currentThread().getName().equals("animals")) {
             try {
-                Server(3331, 3332);
+                Server(3333, Thread.currentThread());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if (Thread.currentThread().getName().equals("countries")) {
             try {
-                Server(4441, 4442);
+                Server(4444, Thread.currentThread());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -144,4 +168,4 @@ public class Server extends Thread {
         room3.start();
         room4.start();
     }
-}
+
