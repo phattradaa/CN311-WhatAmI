@@ -60,7 +60,7 @@ public class Server extends Thread {
                     list.add(arr[1]);
                 }
                 return list;
-            } catch (Exception error) {2
+            } catch (Exception error) {
                 System.out.println("Error from Set Datasets");
                 return null;
             }
