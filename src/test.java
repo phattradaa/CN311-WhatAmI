@@ -26,6 +26,11 @@ public class test {
         String randomFileName = randomFile.getName();
 
         // Use the randomly selected file name for further processing
+        String tmp = randomFile.getName();
+        System.out.println(tmp);
+        String[] arr = tmp.split("\\.");
+        System.out.println(arr[0]);
+        //String name;
         System.out.println("Randomly selected picture file name: " + randomFileName);
     }
 }

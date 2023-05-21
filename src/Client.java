@@ -3,6 +3,7 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
@@ -80,22 +81,41 @@ public class Client {
         // --------------- Button action --------------
         fruitsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Game gameClient = new Game(1111, "fruits");
+                try {
+                    Game gameClient = new Game(1111, "fruits");
+                } catch (IOException e1) {
+                    System.out.println("Error");
+                }
             }
         });
         vegetablesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Game gameClient = new Game(2222, "vegetables");
+                try {
+                    Game gameClient = new Game(2222, "vegetables");
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    System.out.println("Error");
+                }
             }
         });
         animalsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Game gameClient = new Game(3333, "animals");
+                try {
+                    Game gameClient = new Game(3333, "animals");
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    System.out.println("Error");
+                }
             }
         });
         countriesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Game gameClient = new Game(4444, "countries");
+                try {
+                    Game gameClient = new Game(4444, "countries");
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    System.out.println("Error");
+                }
             }
         });
 
