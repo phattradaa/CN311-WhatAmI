@@ -32,22 +32,22 @@ public class Game {
                 boolean clientConnect = Boolean.parseBoolean(buffer.readLine()); // Accept the confirm clientConnect from server
                 System.out.println("Connected to the server: " + clientConnect);
 
-                gameRun = true;
+                // gameRun = true;
                 if (clientConnect) {
                     String randomFilePath = buffer.readLine(); // Accept the random file path from server
                     // System.out.println(randomFilePath);
                     GUI createGUI = new GUI(room, randomFilePath);
-                    JTextField answerField = createGUI.getAnswerField();
-                    while (gameRun) {
-                        String answer = answerField.getText();
-                        PrintWrite.println(answer);
-                        boolean check = Boolean.parseBoolean(buffer.readLine());
-                        if (check == true)
+                    // JTextField answerField = createGUI.getAnswerField();
+                    // while (gameRun) {
+                    //     String answer = answerField.getText();
+                    //     PrintWrite.println(answer);
+                    //     boolean check = Boolean.parseBoolean(buffer.readLine());
+                    //     //if (check == true);
                     }
+                    break;
                 }
                 
 
-            }
         } catch (Exception error) {
             System.out.println(error);
         }

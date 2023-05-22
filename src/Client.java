@@ -86,6 +86,7 @@ public class Client {
                 } catch (IOException e1) {
                     System.out.println("Error");
                 }
+                frame.dispose();
             }
         });
         vegetablesButton.addActionListener(new ActionListener() {
@@ -96,6 +97,7 @@ public class Client {
                     // TODO Auto-generated catch block
                     System.out.println("Error");
                 }
+                frame.dispose();
             }
         });
         animalsButton.addActionListener(new ActionListener() {
@@ -106,6 +108,7 @@ public class Client {
                     // TODO Auto-generated catch block
                     System.out.println("Error");
                 }
+                frame.dispose();
             }
         });
         countriesButton.addActionListener(new ActionListener() {
@@ -116,6 +119,7 @@ public class Client {
                     // TODO Auto-generated catch block
                     System.out.println("Error");
                 }
+                frame.dispose();
             }
         });
 

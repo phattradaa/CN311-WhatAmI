@@ -47,7 +47,7 @@ public class Server extends Thread {
                             PrintWrite.println(randomFilePath); // Sent the random file path
                             System.out.println("The picture is : " + name(randomFilePath));
                             String input = buffer.readLine();
-                            System.out.println("player answer: " + input);
+                            System.out.println("player answer : " + input);
                             if (checkAnswer(input, name(randomFilePath)) == false) {
                                 PrintWrite.println(checkAnswer(input, name(randomFilePath)));
                                 PrintWrite.println("You lost");
@@ -72,7 +72,7 @@ public class Server extends Thread {
         String path = "...";
         if (room.equalsIgnoreCase("fruits")) {
             path = "resource/fruits";
-        } else if (room.equalsIgnoreCase("vegetable")) {
+        } else if (room.equalsIgnoreCase("vegetables")) {
             path = "resource/vegetables";
         } else if (room.equalsIgnoreCase("animals")) {
             path = "resource/animals";

@@ -46,7 +46,7 @@ public class GUI {
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 30));
 
         // set title in panel 1
-        JLabel label = new JLabel("room");
+        JLabel label = new JLabel(room);
         label.setFont(titleFont);
         panel1.add(label);
 
@@ -84,9 +84,10 @@ public class GUI {
         submitButton.setBackground(bttnColor);
         submitButton.setPreferredSize(new Dimension(100, 40));
         panel3.add(submitButton);
-        submitButton.addActionListener(e -> {
-            String answer = ansTextField.getText();
-        });
+        
+        // submitButton.addActionListener(e -> {
+        //     String answer = ansTextField.getText();
+        // });
 
         frame.add(panel1);
         frame.add(panel2);
@@ -104,8 +105,8 @@ public class GUI {
         return imageLabel;
     }
 
-    public JTextField getAnswerField() {
-        return ansTextField;
-    }
+    // public JTextField getAnswerField() {
+    //     return ansTextField;
+    // }
 
 }
