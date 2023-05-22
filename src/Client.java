@@ -14,9 +14,8 @@ public class Client {
     public static Font bttnFont = new Font("Gameplay", Font.BOLD, 20);
     public static Color bttnColor = Color.decode("#64a2eb");
     public static Color bgColor = Color.decode("#f2ece3");
-
+    static Game game;
     public static void main(String[] args) {
-
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -81,44 +80,25 @@ public class Client {
         // --------------- Button action --------------
         fruitsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Game gameClient = new Game(1111, "fruits");
-                } catch (IOException e1) {
-                    System.out.println("Error");
-                }
+                game = new Game(1111, "fruits");
                 frame.dispose();
             }
         });
         vegetablesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Game gameClient = new Game(2222, "vegetables");
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    System.out.println("Error");
-                }
+                game = new Game(2222, "vegetables");
                 frame.dispose();
             }
         });
         animalsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Game gameClient = new Game(3333, "animals");
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    System.out.println("Error");
-                }
+                game = new Game(3333, "Animals");
                 frame.dispose();
             }
         });
         countriesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Game gameClient = new Game(4444, "countries");
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    System.out.println("Error");
-                }
+                game = new Game(4444, "Countries");
                 frame.dispose();
             }
         });

@@ -47,14 +47,13 @@ public class Server extends Thread {
                             System.out.println("The picture is : " + name(randomFilePath));
                             String input = buffer.readLine();
                             System.out.println("player answer : " + input);
-                            if (!checkAnswer(input, name(randomFilePath))) {
-                                PrintWrite.println(checkAnswer(input, name(randomFilePath)));
+                            boolean isCorrect = checkAnswer(input, name(randomFilePath));
+                            if (!isCorrect) {
                                 break;
                             } else {
-                                PrintWrite.println(checkAnswer(input, name(randomFilePath)));
                                 randomFilePath = random(path);
                                 PrintWrite.println(randomFilePath);
-                                System.out.println("The picture is : " + name(randomFilePath));
+                                System.out.println("The picture is: " + randomFilePath);
                             }
                         }
                         gameRun = false;

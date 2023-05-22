@@ -26,47 +26,38 @@ public class Game {
     String answer;
     PrintWriter PrintWrite;
     int count = 0;
+    BufferedReader buffer;
         
-    public Game(int port, String room) throws IOException {
+    public Game(int port, String room){
         boolean gameRun = false;
         try {
             Socket player = new Socket("localhost", port);
             while (true) {
                 System.out.println("Connect Succesful");
 
+                player.setSoTimeout(500);
                 InputStream in = player.getInputStream();
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
+                buffer = new BufferedReader(new InputStreamReader(in));
                 OutputStream out = player.getOutputStream();
-                PrintWrite = new PrintWriter(out, true);
+                PrintWriter PrintWrite = new PrintWriter(out, true);
 
                 boolean clientConnect = Boolean.parseBoolean(buffer.readLine()); // Accept the confirm clientConnect
                                                                                  // from server
                 System.out.println("Connected to the server: " + clientConnect);
 
-                gameRun = true;
+                // gameRun = true;
                 if (clientConnect) {
                     String randomFilePath = buffer.readLine(); // Accept the random file path from server
                     // System.out.println(randomFilePath);
                     createGUI(room, randomFilePath);
-
                     // JTextField answerField = createGUI.getAnswerField();
-                    while (gameRun) {
-                        while (count != 0) {
-                            boolean check = Boolean.parseBoolean(buffer.readLine());
-                            //if (!check) {
-                            //    System.out.println("You lost");
-                            //    break;
-                            //} else {
-                            //    System.out.println("You correct");
-                            //}
-                        }
-                        // String answer = answerField.getText();
-                        // PrintWrite.println(answer);
-                        // boolean check = Boolean.parseBoolean(buffer.readLine());
-                        // //if (check == true);
-                    }
-                    break;
+                    // while (gameRun) {
+                    // String answer = answerField.getText();
+                    // PrintWrite.println(answer);
+                    // boolean check = Boolean.parseBoolean(buffer.readLine());
+                    // //if (check == true);
                 }
+                break;
             }
 
         } catch (Exception error) {
@@ -139,7 +130,10 @@ public class Game {
 
         submitButton.addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                sentAnswer(ansTextField.getText());
+                answer = ansTextField.getText();
+                System.out.println(answer);
+                ansTextField.setText("");
+                PrintWrite.println(answer);
             }
         });
 
@@ -147,6 +141,16 @@ public class Game {
         frame.add(panel2);
         frame.add(panel3);
         frame.setVisible(true);
+
+        try {
+            String response = buffer.readLine();
+            boolean isCorrect = Boolean.parseBoolean(response);
+            System.out.println("Server response: " + isCorrect);
+            // Process the boolean response from the server as needed
+            // For example, display a message or update the GUI accordingly
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public JLabel setImage(String path) {
@@ -161,8 +165,7 @@ public class Game {
 
     
     public void sentAnswer(String answer) {
-        PrintWrite.println(answer);
-        this.count += 1;
+        //PrintWrite.println(answer);
     }
 
     public static void main(String[] args) {
@@ -173,7 +176,7 @@ public class Game {
             public void run() {
                 try {
                     Game x = new Game(port, room);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
