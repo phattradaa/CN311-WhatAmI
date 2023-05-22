@@ -40,7 +40,6 @@ public class Server extends Thread {
                     while (gameRun) {
                         System.out.println("Thread is " + thread.getName());
                         String path = setPath(thread.getName());
-                        int score = 0;
 
                         while (true) {
                             String randomFilePath = random(path);
@@ -48,17 +47,18 @@ public class Server extends Thread {
                             System.out.println("The picture is : " + name(randomFilePath));
                             String input = buffer.readLine();
                             System.out.println("player answer : " + input);
-                            if (checkAnswer(input, name(randomFilePath)) == false) {
+                            if (!checkAnswer(input, name(randomFilePath))) {
                                 PrintWrite.println(checkAnswer(input, name(randomFilePath)));
-                                PrintWrite.println("You lost");
                                 break;
                             } else {
                                 PrintWrite.println(checkAnswer(input, name(randomFilePath)));
-                                score++;
+                                randomFilePath = random(path);
+                                PrintWrite.println(randomFilePath);
+                                System.out.println("The picture is : " + name(randomFilePath));
                             }
                         }
-                        PrintWrite.println("Your score is " + score);
                         gameRun = false;
+                        break;
                     }
                 }
             }
@@ -125,7 +125,9 @@ public class Server extends Thread {
     public String name(String randomPicture) {
         String[] arr = randomPicture.split("\\.");
         System.out.println(arr[0]);
-        String name = arr[0];
+        String[] pathParts = arr[0].split("/");
+        String name = pathParts[pathParts.length-1];
+        System.out.println(name);
         return name;
     }
 

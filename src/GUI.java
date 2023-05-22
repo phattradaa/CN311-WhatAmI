@@ -22,6 +22,7 @@ public class GUI {
     public static Color bttnColor = Color.decode("#64a2eb");
     public static Color bgColor = Color.decode("#f2ece3");
     JTextField ansTextField;
+    String answer;
     
     public GUI(String room, String randomFilePath) {
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
@@ -85,9 +86,9 @@ public class GUI {
         submitButton.setPreferredSize(new Dimension(100, 40));
         panel3.add(submitButton);
         
-        // submitButton.addActionListener(e -> {
-        //     String answer = ansTextField.getText();
-        // });
+        submitButton.addActionListener(e -> {
+            answer = ansTextField.getText();
+        });
 
         frame.add(panel1);
         frame.add(panel2);
@@ -95,7 +96,7 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    private JLabel setImage(String path) {
+    JLabel setImage(String path) {
         ImageIcon imageIcon = new ImageIcon(path);
         Image image = imageIcon.getImage();
         Image scaledImage = image.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
@@ -105,8 +106,12 @@ public class GUI {
         return imageLabel;
     }
 
-    // public JTextField getAnswerField() {
-    //     return ansTextField;
-    // }
+    public JTextField getAnswerField() {
+        return ansTextField;
+    }
+
+    public JTextField getSubmitButton() {
+        return ansTextField;
+    }
 
 }
