@@ -26,7 +26,6 @@ public class Game {
     String answer;
     PrintWriter PrintWrite;
     int count = 0;
-    BufferedReader buffer;
         
     public Game(int port, String room){
         boolean gameRun = false;
@@ -37,7 +36,7 @@ public class Game {
 
                 player.setSoTimeout(500);
                 InputStream in = player.getInputStream();
-                buffer = new BufferedReader(new InputStreamReader(in));
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
                 OutputStream out = player.getOutputStream();
                 PrintWriter PrintWrite = new PrintWriter(out, true);
 
@@ -46,16 +45,31 @@ public class Game {
                 System.out.println("Connected to the server: " + clientConnect);
 
                 // gameRun = true;
-                if (clientConnect) {
+                while (clientConnect) {
+                    int score = 0;
                     String randomFilePath = buffer.readLine(); // Accept the random file path from server
                     // System.out.println(randomFilePath);
                     createGUI(room, randomFilePath);
-                    // JTextField answerField = createGUI.getAnswerField();
-                    // while (gameRun) {
-                    // String answer = answerField.getText();
-                    // PrintWrite.println(answer);
-                    // boolean check = Boolean.parseBoolean(buffer.readLine());
-                    // //if (check == true);
+                    ansTextField.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            String input = ansTextField.getText();
+                            PrintWrite.println(input);
+                            Boolean isCorrect;
+                            try {
+                                isCorrect = Boolean.parseBoolean(buffer.readLine());
+                                if (isCorrect.equals("False")) {
+                                    System.out.println("You lost");
+                                    System.out.println("Your score is:" + score);
+                                } else if (isCorrect.equals("True")) {
+                                    System.out.println("You Win");
+                                }
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+                            }
+                        });
                 }
                 break;
             }
@@ -128,12 +142,10 @@ public class Game {
         submitButton.setPreferredSize(new Dimension(100, 40));
         panel3.add(submitButton);
 
-        submitButton.addActionListener( new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                answer = ansTextField.getText();
-                System.out.println(answer);
-                ansTextField.setText("");
-                PrintWrite.println(answer);
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ansTextField.postActionEvent();
             }
         });
 
@@ -142,15 +154,6 @@ public class Game {
         frame.add(panel3);
         frame.setVisible(true);
 
-        try {
-            String response = buffer.readLine();
-            boolean isCorrect = Boolean.parseBoolean(response);
-            System.out.println("Server response: " + isCorrect);
-            // Process the boolean response from the server as needed
-            // For example, display a message or update the GUI accordingly
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public JLabel setImage(String path) {

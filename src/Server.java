@@ -49,8 +49,10 @@ public class Server extends Thread {
                             System.out.println("player answer : " + input);
                             boolean isCorrect = checkAnswer(input, name(randomFilePath));
                             if (!isCorrect) {
+                                PrintWrite.println(isCorrect);
                                 break;
                             } else {
+                                PrintWrite.println(isCorrect);
                                 randomFilePath = random(path);
                                 PrintWrite.println(randomFilePath);
                                 System.out.println("The picture is: " + randomFilePath);
