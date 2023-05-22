@@ -16,7 +16,7 @@ import java.util.Random;
 public class Server extends Thread {
     boolean clientConnect = false;
 
-    //Setting Server//
+    // Setting Server//
     public void server(int port, Thread thread) throws IOException {
         boolean gameRun = false;
         try {
@@ -28,24 +28,23 @@ public class Server extends Thread {
                     System.out.println("Connect Succesful");
 
                     InputStream in = player.getInputStream();
-
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
-
                     OutputStream out = player.getOutputStream();
-
                     PrintWriter PrintWrite = new PrintWriter(out, true);
 
-                    PrintWrite.println(clientConnect);
-
                     clientConnect = true;
+                    PrintWrite.println(clientConnect); // Sent clientConnect to confirm the connecting
+
                     gameRun = true;
 
                     while (gameRun) {
-                        String path = path(thread);
+                        System.out.println("Thread is " + thread.getName());
+                        String path = setPath(thread.getName());
                         int score = 0;
 
                         while (true) {
                             String randomFilePath = random(path);
+                            PrintWrite.println(randomFilePath); // Sent the random file path
                             System.out.println("The picture is : " + name(randomFilePath));
                             String input = buffer.readLine();
                             System.out.println("player answer: " + input);
@@ -68,29 +67,29 @@ public class Server extends Thread {
         }
     }
 
-    //Set Path of Data//
-    public String path(Thread thread) {
+    // Set Path of Data//
+    public String setPath(String room) {
         String path = "...";
-        if (Thread.currentThread().getName().equals("fruits")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/fruits";
-        } else if (Thread.currentThread().getName().equals("vegetable")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/vegetables";
-        } else if (Thread.currentThread().getName().equals("animals")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/animals";
-        } else if (Thread.currentThread().getName().equals("countries")) {
-            path = "/Users/spy/Desktop/CN311-TheBigBagHave/resource/countries";
+        if (room.equalsIgnoreCase("fruits")) {
+            path = "resource/fruits";
+        } else if (room.equalsIgnoreCase("vegetable")) {
+            path = "resource/vegetables";
+        } else if (room.equalsIgnoreCase("animals")) {
+            path = "resource/animals";
+        } else if (room.equalsIgnoreCase("countries")) {
+            path = "resource/countries";
         }
         return path;
     }
 
-    //Random Picture in Path
+    // Random Picture in Path
     public String random(String path) {
         File folder = new File(path);
 
         // Check if the path is a directory
         if (!folder.isDirectory()) {
-            System.out.println("Invalid folder path.");
-            return null;
+             System.out.println("Invalid folder path.");
+             return null;
         }
 
         File[] files = folder.listFiles();
@@ -111,7 +110,7 @@ public class Server extends Thread {
         return randomFilePath;
     }
 
-    //Check Answer//
+    // Check Answer//
     public boolean checkAnswer(String input, String randomPicture) {
         boolean tmp = false;
 
