@@ -21,9 +21,9 @@ public class GUI {
     public static Font bttnFont = new Font("Gameplay", Font.BOLD, 14);
     public static Color bttnColor = Color.decode("#64a2eb");
     public static Color bgColor = Color.decode("#f2ece3");
+    JTextField ansTextField;
     
     public GUI(String room, String randomFilePath) {
-
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -72,7 +72,7 @@ public class GUI {
         panel3.add(ansLabel);
 
         // text field in panel 3
-        JTextField ansTextField = new JTextField();
+        ansTextField = new JTextField();
         ansTextField.setPreferredSize(new Dimension(200, 50));
         ansTextField.setHorizontalAlignment(SwingConstants.CENTER);
         ansTextField.setFont(font);
@@ -84,6 +84,9 @@ public class GUI {
         submitButton.setBackground(bttnColor);
         submitButton.setPreferredSize(new Dimension(100, 40));
         panel3.add(submitButton);
+        submitButton.addActionListener(e -> {
+            String answer = ansTextField.getText();
+        });
 
         frame.add(panel1);
         frame.add(panel2);
@@ -99,6 +102,10 @@ public class GUI {
         JLabel imageLabel = new JLabel(scaledIcon);
         // panel2.add(imageLabel);
         return imageLabel;
+    }
+
+    public JTextField getAnswerField() {
+        return ansTextField;
     }
 
 }

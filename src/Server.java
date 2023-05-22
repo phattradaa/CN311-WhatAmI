@@ -137,7 +137,7 @@ public class Server extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (Thread.currentThread().getName().equals("vegetable")) {
+        } else if (Thread.currentThread().getName().equals("vegetables")) {
             try {
                 server(2222, Thread.currentThread());
             } catch (IOException e) {
