@@ -44,16 +44,18 @@ public class Server extends Thread {
                         checkRound = true;
                         while (checkRound) {
                             String randomFilePath = random(path);
-                            PrintWrite.println(randomFilePath); // Sent the random file path
-                            System.out.println("The picture is : " + name(randomFilePath));
-                            String input = buffer.readLine();
-                            System.out.println("player answer : " + input);
-                            boolean isCorrect = checkAnswer(input, name(randomFilePath));
-                            System.out.println(isCorrect);
-                            PrintWrite.println(isCorrect);
-                            if (!isCorrect) {
-                                checkRound = false;
-                                break;
+                            if (checkPath(name(randomFilePath))) {
+                                PrintWrite.println(randomFilePath); // Sent the random file path
+                                System.out.println("The picture is : " + name(randomFilePath));
+                                String input = buffer.readLine();
+                                System.out.println("player answer : " + input);
+                                boolean isCorrect = checkAnswer(input, name(randomFilePath));
+                                System.out.println(isCorrect);
+                                PrintWrite.println(isCorrect);
+                                if (!isCorrect) {
+                                    checkRound = false;
+                                    break;
+                                }
                             }
                         }
                         gameRun = false;
@@ -119,6 +121,13 @@ public class Server extends Thread {
             tmp = false;
         }
         return tmp;
+    }
+
+    public boolean checkPath(String path) {
+        if (path.equals("fruits") || path.equals("vegetable") || path.equals("animals") || path.equals("countries")) {
+            return false;
+        }
+        return true;
     }
 
     public String name(String randomPicture) {

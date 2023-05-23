@@ -29,6 +29,7 @@ public class Game {
     PrintWriter PrintWrite;
     private boolean gameRunning = true;
     int score = 0;
+    JFrame frame;
         
     public Game(int port, String room){
         boolean gameRun = false;
@@ -58,6 +59,7 @@ public class Game {
                         if (!isCorrect) {
                             System.out.println("You Lost");
                             System.out.println("Your score is:" + score);
+                            setOption(score);
                             gameRunning = false;
                             score = 0;
                         } else {
@@ -85,7 +87,7 @@ public class Game {
         }
 
         // --------------- Frame ---------------
-        JFrame frame = new JFrame("WHAT AM I");
+        frame = new JFrame("WHAT AM I");
         frame.setSize(700, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -171,6 +173,24 @@ public class Game {
         panel2.revalidate();
         panel2.repaint();
         setImage(path);
+    }
+
+    public void setOption(int score) {
+        ImageIcon icon = new ImageIcon(
+                "/Users/kanpitchahong-ek/Desktop/CN311/os project/TheBigBagHave-Test/goodjob.png");
+        Image resizedIcon = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        icon.setImage(resizedIcon);
+
+        String message = "Good job! Your score is " + score + "\nDo you want to play again?";
+        int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, icon);
+        System.out.println(option);
+
+        if (option == 0) {
+            frame.dispose();
+            Client backToClient = new Client();
+        } else
+            frame.dispose();
     }
 
     public static void main(String[] args) {
