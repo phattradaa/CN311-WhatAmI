@@ -16,6 +16,11 @@ public class Client {
     public static Color bgColor = Color.decode("#f2ece3");
     static Game game;
     public static void main(String[] args) {
+            clientPage();
+    }
+
+    public static void clientPage() {
+
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -102,6 +107,5 @@ public class Client {
                 frame.dispose();
             }
         });
-
     }
 }

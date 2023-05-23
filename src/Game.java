@@ -177,18 +177,19 @@ public class Game {
 
     public void setOption(int score) {
         ImageIcon icon = new ImageIcon(
-                "/Users/kanpitchahong-ek/Desktop/CN311/os project/TheBigBagHave-Test/goodjob.png");
+                "/Users/kanpitchahong-ek/Desktop/CN311/os project/CN311-TheBigBagHave/resource/goodjob.png");
         Image resizedIcon = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         icon.setImage(resizedIcon);
 
-        String message = "Good job! Your score is " + score + "\nDo you want to play again?";
+        String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>Good job! Your score is " + score + "<br>Do you want to play again?</p></body></html>";
         int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, icon);
         System.out.println(option);
 
         if (option == 0) {
             frame.dispose();
-            Client backToClient = new Client();
+            // Client backToClient = new Client();
+            Client.clientPage();;
         } else
             frame.dispose();
     }
