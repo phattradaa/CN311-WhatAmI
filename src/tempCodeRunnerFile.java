@@ -1,1 +1,0 @@
-rintWrite.println(isCorrect);

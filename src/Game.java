@@ -36,7 +36,7 @@ public class Game {
         try {
             Socket player = new Socket("localhost", port);
             System.out.println("Connect Successful");
-            player.setSoTimeout(1000000);
+            player.setSoTimeout(1000);
             
             OutputStream out = player.getOutputStream();
             PrintWriter printWrite = new PrintWriter(out, true);
@@ -73,8 +73,10 @@ public class Game {
                 }
             });
 
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Room is full ");
+            setFullRoom();
+            frame.setVisible(false);
         }
     }
     
@@ -177,11 +179,12 @@ public class Game {
 
     public void setOption(int score) {
         ImageIcon icon = new ImageIcon(
-                "/Users/kanpitchahong-ek/Desktop/CN311/os project/CN311-TheBigBagHave/resource/goodjob.png");
+                "/Users/spy/Desktop/CN311-TheBigBagHave/resource/goodjob.png");
         Image resizedIcon = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         icon.setImage(resizedIcon);
 
-        String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>Good job! Your score is " + score + "<br>Do you want to play again?</p></body></html>";
+        String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>Good job! Your score is "
+                + score + "<br>Do you want to play again?</p></body></html>";
         int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, icon);
         System.out.println(option);
@@ -189,9 +192,18 @@ public class Game {
         if (option == 0) {
             frame.dispose();
             // Client backToClient = new Client();
-            Client.clientPage();;
-        } else
+            Client.clientPage();
+        } else {
             frame.dispose();
+        }
+    }
+    
+    public void setFullRoom() {
+        String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>This room is full</p></body></html>";
+        int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        System.out.println(option);
+        frame.dispose();
     }
 
     public static void main(String[] args) {
