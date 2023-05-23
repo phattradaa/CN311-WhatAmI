@@ -53,54 +53,67 @@ public class Client {
         panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 30));
 
         // set button in panel 2
+        // fruits button
         JButton fruitsButton = new JButton("FRUITS");
         fruitsButton.setPreferredSize(new Dimension(220, 150));
         fruitsButton.setBackground(bttnColor);
         fruitsButton.setFont(bttnFont);
 
+        // vegetables button
         JButton vegetablesButton = new JButton("VEGETABLES");
         vegetablesButton.setPreferredSize(new Dimension(220, 150));
         vegetablesButton.setBackground(bttnColor);
         vegetablesButton.setFont(bttnFont);
 
+        // animals button
         JButton animalsButton = new JButton("ANIMALS");
         animalsButton.setPreferredSize(new Dimension(220, 150));
         animalsButton.setBackground(bttnColor);
         animalsButton.setFont(bttnFont);
 
+        // countries button
         JButton countriesButton = new JButton("COUNTRIES");
         countriesButton.setPreferredSize(new Dimension(220, 150));
         countriesButton.setBackground(bttnColor);
         countriesButton.setFont(bttnFont);
 
+        // add button to panel 2
         panel2.add(fruitsButton);
         panel2.add(vegetablesButton);
         panel2.add(animalsButton);
         panel2.add(countriesButton);
 
+        // add panel 1 , panel 2 to frame
         frame.add(panel1);
         frame.add(panel2);
         frame.setVisible(true);
 
         // --------------- Button action --------------
+        // connect to port 1111 room fruits when user click fruits button
         fruitsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game = new Game(1111, "fruits");
                 frame.dispose();
             }
         });
+
+        // connect to port 2222 room vegetables when user click vegetables button
         vegetablesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game = new Game(2222, "vegetables");
                 frame.dispose();
             }
         });
+
+        // connect to port 3333 room animals when user click animals button
         animalsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game = new Game(3333, "Animals");
                 frame.dispose();
             }
         });
+
+        // connect to port 4444 room countries when user click countries button
         countriesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game = new Game(4444, "Countries");

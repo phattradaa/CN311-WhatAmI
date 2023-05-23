@@ -90,6 +90,7 @@ public class Game {
     }
     
     public void createGUI(String room, String randomFilePath) {
+
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -122,7 +123,7 @@ public class Game {
         panel2.setBounds(0, 80, 700, 300);
         panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 25));
 
-        // set image icon
+        // set image for the game
         panel2.add(setImage(randomFilePath));
 
         // --------------- Panel 3 ---------------
@@ -131,26 +132,27 @@ public class Game {
         panel3.setBounds(0, 380, 700, 120);
         panel3.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
-        // label in panel 3
+        // answer label in panel 3
         JLabel ansLabel = new JLabel("Answer");
         ansLabel.setFont(font);
         ansLabel.setBounds(0, 0, 200, 40);
         panel3.add(ansLabel);
 
-        // text field in panel 3
+        // text field to get the answer from user in panel 3
         ansTextField = new JTextField();
         ansTextField.setPreferredSize(new Dimension(200, 50));
         ansTextField.setHorizontalAlignment(SwingConstants.CENTER);
         ansTextField.setFont(font);
         panel3.add(ansTextField);
 
-        // button in panel 3
+        // submit button in panel 3
         JButton submitButton = new JButton("submit");
         submitButton.setFont(bttnFont);
         submitButton.setBackground(bttnColor);
         submitButton.setPreferredSize(new Dimension(100, 40));
         panel3.add(submitButton);
 
+        // button action
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -158,6 +160,7 @@ public class Game {
             }
         });
 
+        // add panel 1, panel 2, panel 3 to frame
         frame.add(panel1);
         frame.add(panel2);
         frame.add(panel3);
@@ -188,21 +191,27 @@ public class Game {
         setImage(path);
     }
 
+    // set JOption when the game is over
     public void setOption(int score) {
+
+        // set icon for JOption
         ImageIcon icon = new ImageIcon(
                 "/Users/spy/Desktop/CN311-TheBigBagHave/resource/goodjob.png");
         Image resizedIcon = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         icon.setImage(resizedIcon);
 
+        // set message for JOption
         String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>Good job! Your score is "
                 + score + "<br>Do you want to play again?</p></body></html>";
+        
+        // get the option value as a number to check the if else condition
         int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, icon);
         System.out.println(option);
 
+        // if else condition to check if user want to play again or not ( yes = 0, no = 1 )
         if (option == 0) {
             frame.dispose();
-            // Client backToClient = new Client();
             Client.clientPage();
         } else {
             frame.dispose();
@@ -212,8 +221,8 @@ public class Game {
     // Set GUI when this room is full //
     public void setFullRoom() {
         String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>This room is full</p></body></html>";
-        int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+        int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.OK_OPTION,
+                JOptionPane.ERROR_MESSAGE);
         System.out.println(option);
         frame.dispose();
     }
