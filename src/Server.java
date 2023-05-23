@@ -21,6 +21,7 @@ public class Server extends Thread {
         boolean gameRun = false;
         boolean checkRound;
         try {
+            // Setting Server//
             ServerSocket server = new ServerSocket(port);
             while (true) {
                 Socket player = server.accept();
@@ -33,25 +34,29 @@ public class Server extends Thread {
                     OutputStream out = player.getOutputStream();
                     PrintWriter PrintWrite = new PrintWriter(out, true);
 
+                    // Sent clientConnect to confirm the connecting 
                     clientConnect = true;
                     PrintWrite.println(clientConnect); // Sent clientConnect to confirm the connecting
 
                     gameRun = true;
-    
+
+                    //When game start
                     while (gameRun) {
                         System.out.println("Thread is " + thread.getName());
                         String path = setPath(thread.getName());
                         checkRound = true;
                         while (checkRound) {
+                            //Get Path of Picture to play 
                             String randomFilePath = random(path);
                             if (checkPath(name(randomFilePath))) {
-                                PrintWrite.println(randomFilePath); // Sent the random file path
+                                PrintWrite.println(randomFilePath); // Sent the random file path to client
                                 System.out.println("The picture is : " + name(randomFilePath));
-                                String input = buffer.readLine();
+                                String input = buffer.readLine(); //Get answer from client 
                                 System.out.println("player answer : " + input);
-                                boolean isCorrect = checkAnswer(input, name(randomFilePath));
+                                boolean isCorrect = checkAnswer(input, name(randomFilePath)); //Check answer
                                 System.out.println(isCorrect);
                                 PrintWrite.println(isCorrect);
+                                //If answer is wrong , game stop
                                 if (!isCorrect) {
                                     checkRound = false;
                                     break;
@@ -123,6 +128,7 @@ public class Server extends Thread {
         return tmp;
     }
 
+    //Check path 
     public boolean checkPath(String path) {
         if (path.equals("fruits") || path.equals("vegetable") || path.equals("animals") || path.equals("countries")) {
             return false;
@@ -130,6 +136,7 @@ public class Server extends Thread {
         return true;
     }
 
+    //Get Name of picture
     public String name(String randomPicture) {
         String[] arr = randomPicture.split("\\.");
         System.out.println(arr[0]);

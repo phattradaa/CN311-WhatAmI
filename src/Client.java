@@ -20,7 +20,7 @@ public class Client {
     }
 
     public static void clientPage() {
-
+        
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -103,7 +103,7 @@ public class Client {
         });
         countriesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game = new Game(4444, "Countri");
+                game = new Game(4444, "Countries");
                 frame.dispose();
             }
         });

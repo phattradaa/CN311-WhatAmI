@@ -34,6 +34,7 @@ public class Game {
     public Game(int port, String room){
         boolean gameRun = false;
         try {
+            // Setting Server //
             Socket player = new Socket("localhost", port);
             System.out.println("Connect Successful");
             player.setSoTimeout(1000);
@@ -43,18 +44,25 @@ public class Game {
             InputStream in = player.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
+            // Accept boolean clientConnec from server //
             boolean clientConnect = Boolean.parseBoolean(reader.readLine());
             System.out.println("Connected to the server: " + clientConnect);
+            // Accept random picture path from server // 
             String path = reader.readLine();
             System.out.println(path);
+            // create GUI //
             createGUI(room, path);
+            // wait to accept the click signal // 
             ansTextField.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    // Accept the answer from text field // 
                     String input = ansTextField.getText();
+                    // Sent the answer to server //
                     printWrite.println(input);
                     //System.out.println(input);
                     boolean isCorrect = true;
                     try {
+                        // Server will sent isCheck from answer //
                         isCorrect = Boolean.parseBoolean(reader.readLine());
                         if (!isCorrect) {
                             System.out.println("You Lost");
@@ -74,6 +82,7 @@ public class Game {
             });
 
         } catch (Exception e) {
+            // If the room is full , you cannot go to this room.
             System.out.println("Room is full ");
             setFullRoom();
             frame.setVisible(false);
@@ -156,6 +165,7 @@ public class Game {
 
     }
 
+    // Set Image when your answer is correct
     public JLabel setImage(String path) {
         ImageIcon imageIcon = new ImageIcon(path);
         Image image = imageIcon.getImage();
@@ -166,6 +176,7 @@ public class Game {
         return imageLabel;
     }
 
+    //reset image and text field when your answer is correct
     public void reset(String path) {
         ansTextField.setText("");
         JLabel imageLabel = setImage(path);
@@ -198,6 +209,7 @@ public class Game {
         }
     }
     
+    // Set GUI when this room is full //
     public void setFullRoom() {
         String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>This room is full</p></body></html>";
         int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION,
