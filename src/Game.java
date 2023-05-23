@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,60 +27,54 @@ public class Game {
     JTextField ansTextField;
     String answer;
     PrintWriter PrintWrite;
-    int count = 0;
+    private boolean gameRunning = true;
+    int score = 0;
         
     public Game(int port, String room){
         boolean gameRun = false;
         try {
             Socket player = new Socket("localhost", port);
-            while (true) {
-                System.out.println("Connect Succesful");
+            System.out.println("Connect Successful");
+            player.setSoTimeout(1000000);
+            
+            OutputStream out = player.getOutputStream();
+            PrintWriter printWrite = new PrintWriter(out, true);
+            InputStream in = player.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                player.setSoTimeout(500);
-                InputStream in = player.getInputStream();
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(in));
-                OutputStream out = player.getOutputStream();
-                PrintWriter PrintWrite = new PrintWriter(out, true);
-
-                boolean clientConnect = Boolean.parseBoolean(buffer.readLine()); // Accept the confirm clientConnect
-                                                                                 // from server
-                System.out.println("Connected to the server: " + clientConnect);
-
-                // gameRun = true;
-                while (clientConnect) {
-                    int score = 0;
-                    String randomFilePath = buffer.readLine(); // Accept the random file path from server
-                    // System.out.println(randomFilePath);
-                    createGUI(room, randomFilePath);
-                    ansTextField.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            String input = ansTextField.getText();
-                            PrintWrite.println(input);
-                            Boolean isCorrect;
-                            try {
-                                isCorrect = Boolean.parseBoolean(buffer.readLine());
-                                if (isCorrect.equals("False")) {
-                                    System.out.println("You lost");
-                                    System.out.println("Your score is:" + score);
-                                } else if (isCorrect.equals("True")) {
-                                    System.out.println("You Win");
-                                }
-                            } catch (IOException e1) {
-                                // TODO Auto-generated catch block
-                                e1.printStackTrace();
-                            }
-                            }
-                        });
+            boolean clientConnect = Boolean.parseBoolean(reader.readLine());
+            System.out.println("Connected to the server: " + clientConnect);
+            String path = reader.readLine();
+            System.out.println(path);
+            createGUI(room, path);
+            ansTextField.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String input = ansTextField.getText();
+                    printWrite.println(input);
+                    //System.out.println(input);
+                    boolean isCorrect = true;
+                    try {
+                        isCorrect = Boolean.parseBoolean(reader.readLine());
+                        if (!isCorrect) {
+                            System.out.println("You Lost");
+                            System.out.println("Your score is:" + score);
+                            gameRunning = false;
+                            score = 0;
+                        } else {
+                            String newpath = reader.readLine();
+                            reset(newpath);
+                            score++;
+                        }
+                    } catch (IOException e1) {
+                        System.out.println("Error" + e1.getMessage());
+                    }
                 }
-                break;
-            }
+            });
 
-        } catch (Exception error) {
-            System.out.println(error);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
-
     
     public void createGUI(String room, String randomFilePath) {
         // set look and feel ให้ mac เห็นสี GUI เป็นปกติ
@@ -166,9 +162,15 @@ public class Game {
         return imageLabel;
     }
 
-    
-    public void sentAnswer(String answer) {
-        //PrintWrite.println(answer);
+    public void reset(String path) {
+        ansTextField.setText("");
+        JLabel imageLabel = setImage(path);
+        JPanel panel2 = (JPanel) ansTextField.getParent().getParent().getComponent(1);
+        panel2.removeAll();
+        panel2.add(imageLabel);
+        panel2.revalidate();
+        panel2.repaint();
+        setImage(path);
     }
 
     public static void main(String[] args) {

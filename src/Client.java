@@ -98,7 +98,7 @@ public class Client {
         });
         countriesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game = new Game(4444, "Countries");
+                game = new Game(4444, "Countri");
                 frame.dispose();
             }
         });

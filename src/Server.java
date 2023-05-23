@@ -19,6 +19,7 @@ public class Server extends Thread {
     // Setting Server//
     public void server(int port, Thread thread) throws IOException {
         boolean gameRun = false;
+        boolean checkRound;
         try {
             ServerSocket server = new ServerSocket(port);
             while (true) {
@@ -36,26 +37,23 @@ public class Server extends Thread {
                     PrintWrite.println(clientConnect); // Sent clientConnect to confirm the connecting
 
                     gameRun = true;
-
+    
                     while (gameRun) {
                         System.out.println("Thread is " + thread.getName());
                         String path = setPath(thread.getName());
-
-                        while (true) {
+                        checkRound = true;
+                        while (checkRound) {
                             String randomFilePath = random(path);
                             PrintWrite.println(randomFilePath); // Sent the random file path
                             System.out.println("The picture is : " + name(randomFilePath));
                             String input = buffer.readLine();
                             System.out.println("player answer : " + input);
                             boolean isCorrect = checkAnswer(input, name(randomFilePath));
+                            System.out.println(isCorrect);
+                            PrintWrite.println(isCorrect);
                             if (!isCorrect) {
-                                PrintWrite.println(isCorrect);
+                                checkRound = false;
                                 break;
-                            } else {
-                                PrintWrite.println(isCorrect);
-                                randomFilePath = random(path);
-                                PrintWrite.println(randomFilePath);
-                                System.out.println("The picture is: " + randomFilePath);
                             }
                         }
                         gameRun = false;
