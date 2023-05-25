@@ -66,6 +66,7 @@ public class Server extends Thread {
                         gameRun = false;
                         break;
                     }
+                    clientConnect = false;
                 }
             }
         } catch (Exception error) {
@@ -130,7 +131,7 @@ public class Server extends Thread {
 
     //Check path 
     public boolean checkPath(String path) {
-        if (path.equals("fruits") || path.equals("vegetable") || path.equals("animals") || path.equals("countries")) {
+        if (path.equals("fruits") || path.equals("vegetables") || path.equals("animals") || path.equals("countries")) {
             return false;
         }
         return true;
@@ -139,10 +140,10 @@ public class Server extends Thread {
     //Get Name of picture
     public String name(String randomPicture) {
         String[] arr = randomPicture.split("\\.");
-        System.out.println(arr[0]);
+        //System.out.println(arr[0]);
         String[] pathParts = arr[0].split("/");
         String name = pathParts[pathParts.length-1];
-        System.out.println(name);
+        //System.out.println(name);
         return name;
     }
 

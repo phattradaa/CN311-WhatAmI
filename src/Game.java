@@ -37,7 +37,7 @@ public class Game {
             // Setting Server //
             Socket player = new Socket("localhost", port);
             System.out.println("Connect Successful");
-            player.setSoTimeout(1000);
+            player.setSoTimeout(100);
             
             OutputStream out = player.getOutputStream();
             PrintWriter printWrite = new PrintWriter(out, true);
@@ -67,9 +67,11 @@ public class Game {
                         if (!isCorrect) {
                             System.out.println("You Lost");
                             System.out.println("Your score is:" + score);
-                            setOption(score);
-                            gameRunning = false;
+                            setOption(score,player);
                             score = 0;
+                            player.close();
+                            gameRunning = false;
+                            //player.close();
                         } else {
                             String newpath = reader.readLine();
                             reset(newpath);
@@ -101,7 +103,7 @@ public class Game {
         // --------------- Frame ---------------
         frame = new JFrame("WHAT AM I");
         frame.setSize(700, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setLayout(null);
@@ -192,7 +194,7 @@ public class Game {
     }
 
     // set JOption when the game is over
-    public void setOption(int score) {
+    public void setOption(int score,Socket player) throws IOException {
 
         // set icon for JOption
         ImageIcon icon = new ImageIcon(
@@ -211,6 +213,7 @@ public class Game {
 
         // if else condition to check if user want to play again or not ( yes = 0, no = 1 )
         if (option == 0) {
+            player.close();
             frame.dispose();
             Client.clientPage();
         } else {
@@ -221,9 +224,9 @@ public class Game {
     // Set GUI when this room is full //
     public void setFullRoom() {
         String message = "<html><body><p style='font-family: Gameplay; font-size: 15px;'>This room is full</p></body></html>";
-        int option = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.OK_OPTION,
+        JOptionPane.showConfirmDialog(null, message, null, JOptionPane.OK_OPTION,
                 JOptionPane.ERROR_MESSAGE);
-        System.out.println(option);
+        // System.out.println(option);
         frame.dispose();
     }
 
